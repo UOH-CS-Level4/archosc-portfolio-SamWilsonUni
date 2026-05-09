@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4 - HTML, CSS and JS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="lab1.html">Lab 1</a>
+        <a href="lab2.html">Lab 2</a>
+        <a href="lab3.html">Lab 3</a>
+        <a href="lab4.html" class="active">Lab 4</a>
+        <button class="dark-toggle" id="darkToggle">Dark Mode</button>
+    </nav>
+
+    <div class="section">
+        <h1>Lab 4 — HTML, CSS and JS</h1>
+
+        <h2>Setting Up Files</h2>
+
+        <div class="entry">
+            <p>I clicked the new file button in visual studio code and named one style.css and the other one script.js</p>
+        </div>
+        <div class="entry">
+            <img src="Pictures/added script.js and style.ccs files.png" alt="Added script.js and style.css files">
+        </div>
+
+        <div class="entry">
+            <p>These two lines in the HTML head and body link the page to its CSS and JavaScript files. Without them the page has no styling and none of the interactive features work. The link tag pulls in the stylesheet and the script tag at the bottom of the body loads the JavaScript after the page has fully loaded, which stops it from running before the elements exist.</p>
+        </div>
+        <div class="entry">
+            <img src="Pictures/style and script code.png" alt="Style and script code">
+        </div>
+
+        <div class="entry">
+            <p>Each lab needs its own separate HTML page because a single page would get too long and hard to navigate. Having individual files like lab1.html, lab2.html etc means you can link between them through the nav bar and keep each lab's screenshots and notes organised in one place. The folder structure shows all the files the site needs to work — the HTML pages, the shared style.css and script.js, and the Pictures folder where all the screenshots are stored  </p>
+        </div>
+        <div class="entry">
+            <img src="Pictures/added files for each lab.png" alt="Added files for each lab">
+        </div>
+
+        <h2>Home Page & CSS</h2>
+
+        <div class="entry">
+            <p>It styles the portfolio's appearance, the animated gradient background, the card and entry layouts, and the nav bar. Without it the page would just be unstyled HTML with no colour, spacing or structure.</p>
+        </div>
+        <div class="entry">
+            <img src="Pictures/home page picture.png" alt="Home page">
+        </div>
+
+    
+        <div class="entry">
+            <p></p>
+            <img src="Pictures/css for home page.png" alt="CSS for home page">
+        </div>
+
+        <h2>JavaScript Console</h2>
+        <div class="entry">
+            <img src="Pictures/js console log.png" alt="JS console log">
+        </div>
+
+        <div class="entry">
+            <img src="Pictures/console screenshot for js.png" alt="Console screenshot">
+        </div>
+
+        <h2>Nav Bar</h2>
+        <div class="entry">
+            <p>I started with a basic list of links using an ordered list and anchor tags to connect the pages together. I then replaced this with a proper nav bar using a nav element with styled links that sit across the top of every page. Each link uses the href attribute to point to the relevant page, and the current page gets an active class which adds the red left border to show where you are. The nav bar is shared across all pages so you can move between them without using the browser back button.</p>
+        </div>
+        <div class="entry">
+            <img src="Pictures/nav bar.png" alt="Nav bar screenshot">
+        </div>
+
+        <div class="entry">
+            <p></p>
+            <img src="Pictures/nav bar css.png" alt="Nav bar CSS">
+        </div>
+
+
+        <h2>Dark Mode</h2>
+        <div class="entry">
+            <p>I added a button to the nav bar with an id of darkToggle so JavaScript could find it. In the CSS I created a body.dark class that overrides the background to plain black and removes the gradient animation, then added overrides for the entry and card colours too. In the JavaScript I added a click listener to the button that toggles the dark class on and off, and used localStorage to save the user's preference so it stays consistent when navigating between pages.</p>
+        </div>
+        <div class="entry">
+            <p></p>
+            <img src="Pictures/light mode.png" alt="Light mode screenshot">
+        </div>
+
+        <div class="entry">
+            <p></p>
+            <img src="Pictures/dark mode screenshot.png" alt="Dark mode screenshot">
+        </div>
+
+        <div class="entry">
+            <p></p>
+            <img src="Pictures/dark mode css.png" alt="Dark mode CSS">
+        </div>
+
+        <div class="entry">
+            <p></p>
+            <img src="Pictures/dark mode js.png" alt="Dark mode JS">
+        </div>
+
+
+        <h2>Pushing to GitHub</h2>
+        <img src="Pictures/Lab 4 website push.png" alt="Dark mode JS">
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

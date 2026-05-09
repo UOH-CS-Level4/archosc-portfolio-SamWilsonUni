@@ -1,0 +1,63 @@
+/* Style the entire page */
+body {
+    background-color: #474747;
+    text-align: center; 
+    font-family: Arial, sans-serif;
+}
+
+/* Style the heading */
+h1 {
+    color: #ffffff;
+}
+
+/* Style the displayed image */
+img {
+    max-width: 300px; /* Limit image size */
+    margin-top: 20px;
+}
+
+/* Style the button */
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.nav {
+    max-width: 900px;
+    margin: 0 auto 40px auto;
+    display: flex;
+    gap: 15px;
+}
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+
+.nav a.active {
+    border-left: 4px solid #e94560;
+}
+
+/* Dark mode overrides */
+body.dark {
+    background: #121212;
+}
+
+body.dark h1 {
+    color: #e0e0e0;
+}
+
+body.dark button {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+body.dark .nav a {
+    color: #ccc;
+    background: rgba(255, 255, 255, 0.05);
+}
