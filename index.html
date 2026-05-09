@@ -15,13 +15,13 @@
             color: #ffffff;
             padding: 40px 20px;
         }
- 
+
         @keyframes gradientShift {
             0%   { background-position: 0% 50%; }
             50%  { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
- 
+
         /* Change 2: Decorative name card */
         .hero {
             display: flex;
@@ -29,7 +29,7 @@
             align-items: center;
             min-height: 40vh;
         }
- 
+
         .card {
             background: rgba(255, 255, 255, 0.08);
             border: 2px solid rgba(255, 255, 255, 0.2);
@@ -40,29 +40,29 @@
             backdrop-filter: blur(10px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
- 
+
         .card:hover {
             transform: translateY(-6px);
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
         }
- 
+
         h1 {
             font-size: 3rem;
             color: #ffffff;
             margin: 0;
             letter-spacing: 0.02em;
         }
- 
+
         h1 span {
             color: #e94560;
         }
- 
+
         /* Section styles */
         .section {
             max-width: 900px;
             margin: 60px auto;
         }
- 
+
         h2 {
             font-size: 1.8rem;
             color: #e94560;
@@ -70,7 +70,7 @@
             padding-bottom: 10px;
             margin-bottom: 30px;
         }
- 
+
         .entry {
             background: rgba(255, 255, 255, 0.06);
             border-left: 4px solid #e94560;
@@ -78,19 +78,19 @@
             padding: 20px 25px;
             margin-bottom: 30px;
         }
- 
+
         .entry p {
             margin: 0 0 15px 0;
             line-height: 1.7;
             color: #ccd6f6;
         }
- 
+
         .entry img {
             width: 100%;
             border-radius: 6px;
             border: 1px solid rgba(255,255,255,0.15);
         }
- 
+
         /* Reflection */
         .reflection {
             background: rgba(233, 69, 96, 0.1);
@@ -100,11 +100,11 @@
             margin: 60px auto;
             max-width: 900px;
         }
- 
+
         .reflection h2 {
             border-bottom-color: rgba(233, 69, 96, 0.4);
         }
- 
+
         .reflection p {
             line-height: 1.8;
             color: #ccd6f6;
@@ -112,90 +112,96 @@
     </style>
 </head>
 <body>
- 
+
+    <!-- Navbar -->
+    <nav style="max-width:900px;margin:0 auto 40px auto;display:flex;gap:15px;">
+        <a href="index.html" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-left:4px solid #e94560;border-radius:8px;padding:10px 20px;">Home</a>
+        <a href="lab3.html" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:10px 20px;">Lab 3</a>
+    </nav>
+
     <!-- Name Card -->
     <div class="hero">
         <div class="card">
             <h1>My name is: <span>Sam Wilson</span></h1>
         </div>
     </div>
- 
+
     <!-- Lab Work Section -->
     <div class="section">
         <h2>Lab Work</h2>
- 
+
         <div class="entry">
             <p>Opened visual studio code and pasted in the given code, then opened the file in the browser.</p>
             <img src="Pictures/Website ver 1.png" alt="Website version 1">
         </div>
- 
+
         <div class="entry">
             <p>The background was changed from plain grey to an animated deep blue gradient. The name is now wrapped in a frosted-glass card with a red accent border and a hover effect that lifts it slightly.</p>
             <img src="Pictures/Lab 2 Updated website.png" alt="Lab 2 updated website">
         </div>
- 
+
         <div class="entry">
             <p>I created a new folder called "ArchOSC Assignment" to save my work. Inside this folder, I then created another folder called "Pictures", which will be used to store screenshots for the lab tasks. After creating both folders, I took a screenshot showing the folder structure and saved it inside the Pictures folder with an appropriate file name.</p>
             <img src="Pictures/Screenshot of Folders.png" alt="Screenshot of folders">
         </div>
- 
+
         <div class="entry">
             <p>I opened PowerShell through the folder I created, and typed "git init", which initialised the folder and connected it to the Git repository.</p>
             <img src="Pictures/git init.png" alt="Git init">
         </div>
- 
+
         <div class="entry">
             <p>Used git remote add origin on the folder to create a remote origin. The origin already existed since I used the clone repository feature on visual studio to create the folder since it wouldn't work otherwise. Then used git pull origin main to check if the folder and the version on the repository was the same.</p>
             <img src="Pictures/Remote origin and pull.png" alt="Remote origin and pull">
         </div>
- 
+
         <div class="entry">
             <p>Used git status to check which files have changed compared to the repository. Then used git add . to track every changed/new file and add them to the commit. Used git status to check if all the files are correctly being tracked.</p>
             <img src="Pictures/git status and add.png" alt="Git status and add">
         </div>
- 
+
         <div class="entry">
             <p>Committed all the files to the repository with a message.</p>
             <img src="Pictures/git commit 1.png" alt="Git commit">
         </div>
- 
+
         <div class="entry">
             <p>Pushed all committed files to the repository on github.</p>
             <img src="Pictures/git push 1.png" alt="Git push">
         </div>
- 
+
         <div class="entry">
             <p>Screenshot of the updated repository with all the files in it.</p>
             <img src="Pictures/Initialising Repository.png" alt="Initialising repository">
         </div>
- 
+
         <div class="entry">
             <p>Newly updated github repository.</p>
             <img src="Pictures/Github Repository Update.png" alt="Github repository update">
         </div>
- 
+
         <div class="entry">
             <p>Checked the newly updated files with git status. Added them all using git add . and committed them with a message and finally pushed the update to the github repository.</p>
             <img src="Pictures/Lab 2 Website update push to github.png" alt="Lab 2 website update push to github">
         </div>
- 
+
         <div class="entry">
             <p>Pushing all the new screenshots onto github.</p>
             <img src="Pictures/Pushing all the new lab 2 screenshots.png" alt="Pushing all new lab 2 screenshots">
         </div>
- 
+
         <div class="entry">
             <p>Screenshot of the updated repository from lab 2.</p>
             <img src="Pictures/updated repository from lab 2.png" alt="Updated repository from lab 2">
         </div>
- 
+
         <div class="entry">
             <p>Went into settings and found the pages section, and added the main folder to be deployed and saved it. Went back to the home page and found the deployments section, and clicked on it to find the new link created for my page.</p>
             <img src="Pictures/Deployed website link.png" alt="Deployed website link">
         </div>
- 
+
     </div>
- 
+
     <!-- Reflection Section -->
     <div class="reflection">
         <h2>Reflection</h2>
@@ -206,7 +212,6 @@
             These skills are highly relevant in industry. Version control with Git is used by almost every software development team to collaborate on code, track changes, and avoid conflicts when multiple people are working on the same project. Knowing how to build and deploy websites is equally important, as businesses rely on web presence for everything from marketing to delivering products and services. Understanding how to make and push changes to a live site is a fundamental skill for any developer or web professional.
         </p>
     </div>
- 
+
 </body>
 </html>
- 
