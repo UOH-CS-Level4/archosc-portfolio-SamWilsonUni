@@ -1,0 +1,21 @@
+name: Push To Windows VM
+#Name of the Worklow
+
+on:
+  push:
+    branches: [main]
+    #Runs every time main is pushed to
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to IIS folder
+        shell: powershell        # ← must align with 'name'
+        run: |                   # ← must align with 'name'
+          $src = "${env:GITHUB_WORKSPACE}\*"
+          $dst = "C:\inetpub\wwwroot"
+
+          New-Item -ItemType Directory -Force -Path $dst | Out-Null
+          Copy-Item -Path $src -Destination $dst -Recurse -Force
