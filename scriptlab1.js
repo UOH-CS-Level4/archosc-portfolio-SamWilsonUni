@@ -25,3 +25,4 @@ switchButton.addEventListener("click", function () {
     // Flip the boolean so next click switches again
     showingFirstImage = !showingFirstImage;
 });
+

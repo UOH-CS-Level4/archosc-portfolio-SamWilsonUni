@@ -41,23 +41,3 @@ button {
 .nav a.active {
     border-left: 4px solid #e94560;
 }
-
-/* Dark mode overrides */
-body.dark {
-    background: #121212;
-}
-
-body.dark h1 {
-    color: #e0e0e0;
-}
-
-body.dark button {
-    background: #333;
-    color: #fff;
-    border: 1px solid #555;
-}
-
-body.dark .nav a {
-    color: #ccc;
-    background: rgba(255, 255, 255, 0.05);
-}
