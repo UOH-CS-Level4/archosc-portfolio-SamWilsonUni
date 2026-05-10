@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam Wilson - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="lab1.html">Lab 1</a>
+        <a href="lab2.html">Lab 2</a>
+        <a href="lab3.html">Lab 3</a>
+        <a href="lab4.html">Lab 4</a>
+        <a href="lab7.html">Lab 7</a>
+        <button class="dark-toggle" id="darkToggle">Dark Mode</button>
+    </nav>
+
+    <div class="section">
+        <h1>Lab 8 - Memory and Memory Management</h1>
+
+        <!-- TASK 1 -->
+        <h2 class="name">Task 1</h2>
+        <div class="entry">
+            <p class="description">
+                Virtual address = 4-bit VPN + 8-bit offset<br>
+                Physical address = 3-bit PPN + 8-bit offset<br>
+                Number of virtual pages = 2⁴ = 16 pages<br>
+                Bytes per page = 2⁸ = 256 bytes<br>
+                Number of physical pages = 2³ = 8 pages<br>
+                <br>
+                The VPN bits tell you how many pages exist, and the offset bits tell you how big each page is. 
+                They're separate because the MMU needs to translate the page number while keeping the offset the same.
+            </p>
+        </div>
+
+        <div class="entry">
+            <p class="description">
+                0x2 = 0010, 0xC = 1100, 0x8 = 1000<br>
+                Full binary: 0010 1100 1000 (12 bits)<br>
+                First 4 bits = VPN &rarr; 0010 = 2<br>
+                Last 8 bits = offset &rarr; 1100 1000 = 0xC8<br>
+                Row 2: D=0, R=1, PPN=4<br>
+                R=1 means the page is in RAM (no page fault)<br>
+                <br>
+                Physical address = PPN 4 + offset 0xC8
+            </p>
+        </div>
+
+        <!-- TASK 2 -->
+        <h2 class="name">Task 2</h2>
+        <div class="entry">
+            <p class="description">
+                Page frame size = 4KB = 4096 bytes<br>
+                Each range = (frame number &times; 4096) to (frame number &times; 4096) + 4095<br>
+                <br>
+                D (frame 0, lower bound):<br>
+                0 &times; 4096 = 0<br>
+                Range: 0 &ndash; 4095, so D = 4095<br>
+                <br>
+                A (frame 7, upper bound):<br>
+                7 &times; 4096 = 28672<br>
+                Range: 28672 &ndash; A<br>
+                A = 28672 + 4095 = 32767<br>
+                <br>
+                B (frame 5, upper bound):<br>
+                5 &times; 4096 = 20480<br>
+                Range: 20480 &ndash; B<br>
+                B = 20480 + 4095 = 24575<br>
+                <br>
+                C (frame 3, upper bound):<br>
+                3 &times; 4096 = 12288<br>
+                Range: 12288 &ndash; C<br>
+                C = 12288 + 4095 = 16383<br>
+                <br>
+                Each page frame is exactly 4096 bytes wide. To find any boundary you multiply the frame number 
+                by the page size. The upper bound is always one less than the next frame's start (since addresses are whole numbers).
+            </p>
+        </div>
+
+        <!-- TASK 3 -->
+        <h2 class="name">Task 3</h2>
+        <div class="entry">
+            <p class="description">
+                Full 32-bit address: 00000000000000000011000010110111<br>
+                First 20 bits = VPN, last 12 bits = offset<br>
+                VPN (first 20 bits): 00000000000000000011<br>
+                Offset (last 12 bits): 000010110111<br>
+                <br>
+                00000000000000000011 in binary = 3<br>
+                So Virtual Page 3 is being referenced<br>
+                <br>
+                From the page table, VPN 3 has:<br>
+                Present/Absent bit = 1 (page is in memory, no page fault!)<br>
+                Page frame = 011 in binary = 3 in decimal<br>
+                <br>
+                Take PPN: 011<br>
+                Take offset: 000010110111<br>
+                Physical address = 011 000010110111<br>
+                Converting to hex: 0x30B7<br>
+                <br>
+                The MMU takes the VPN (3), looks it up in the page table, finds it's present with PPN 011, 
+                then simply swaps the VPN for the PPN while keeping the offset identical.
+            </p>
+        </div>
+
+        <!-- TASK 4 -->
+        <h2 class="name">Task 4</h2>
+        <div class="entry">
+            <p class="description">
+                Virtual memory = 2³² bytes<br>
+                Physical memory = 2²⁴ bytes<br>
+                Page size = 2¹⁰ bytes (1KB)<br>
+                VPN = 22 bits, Offset = 10 bits, PPN = 14 bits<br>
+                4 entry TLB<br>
+                <br>
+                (i) Physical memory size &divide; page size<br>
+                2²⁴ &divide; 2¹⁰ = 2¹⁴ = 16,384 pages<br>
+                <br>
+                (ii) This is determined by the number of virtual pages<br>
+                2³² &divide; 2¹⁰ = 2²² = 4,194,304 entries<br>
+                <br>
+                (iii) Each entry needs to store the PPN + control bits (R, D etc.)<br>
+                PPN = 14 bits + typically 2 control bits (R and D)<br>
+                = 16 bits per entry<br>
+                <br>
+                (iv) Total page table size = number of entries &times; bits per entry<br>
+                = 2²² &times; 16 bits = 2²² &times; 2 bytes = 2²³ bytes<br>
+                Pages needed = 2²³ &divide; 2¹⁰ = 2¹³ = 8,192 pages
+            </p>
+        </div>
+
+        <!-- TLB SIMULATION -->
+        <h2 class="name">Translation Lookaside Buffer (TLB) Simulation</h2>
+        <div class="entry">
+            <p class="description">
+                This program simulates how a Translation Lookaside Buffer (TLB) works in a real operating system. 
+                The TLB acts as a small 4-entry cache that stores recent virtual-to-physical page translations, 
+                so the MMU doesn't have to access the slower page table in RAM every time. The program works 
+                through a sequence of virtual page number lookups &mdash; for each one it first checks the TLB, 
+                and if the VPN is found (a hit) it returns the physical page number immediately. If it isn't 
+                found (a miss) it falls back to the page table, retrieves the PPN, and loads it into the TLB 
+                for future use. When the TLB is full, the oldest entry is evicted to make room (FIFO). At the 
+                end, the hit ratio is calculated &mdash; VPNs like 1 and 6 appear multiple times in the sequence, 
+                so after the first miss they become hits, demonstrating exactly why TLBs improve performance in real systems.
+            </p>
+            <img src="Pictures/TLB output.png" alt="TLB output">
+        </div>
+
+        <!-- TASK 4.2 -->
+        <h2 class="name">Task 4.2</h2>
+        <div class="entry">
+            <p class="description">
+                0x1804 = 0001 1000 0000 0100<br>
+                In 16 bits: 0001100000000100<br>
+                Offset (lower 10 bits): 0000000100 = 4<br>
+                VPN (upper bits): 000110 = 6<br>
+                VPN 6 is in the TLB &rarr; TLB Hit!<br>
+                PPN = 2<br>
+                PPN 2 in binary = 000010<br>
+                Offset = 0000000100<br>
+                Physical address = 000010 0000000100 = 0x0804<br>
+                <br>
+                The MMU checks the TLB first before going to the page table. Since VPN 6 was already cached 
+                in the TLB, we get an instant hit and can build the physical address immediately by swapping 
+                the VPN for PPN 2, keeping the offset unchanged.<br>
+                <br>
+                0x0FC = 0000 0000 1111 1100<br>
+                In 16 bits: 0000000011111100<br>
+                Offset (lower 10 bits): 0011111100 = 0xFC = 252<br>
+                VPN (upper bits): 000000 = 0<br>
+                VPN 0 is in the TLB &rarr; TLB Hit<br>
+                But R = 0 &rarr; page is NOT in physical memory<br>
+                This causes a Page Fault<br>
+                <br>
+                Even though VPN 0 appears in the TLB, its resident bit R=0 means the page isn't actually 
+                loaded in RAM. The OS must step in, load the page from disk into a free frame, update the 
+                page table and TLB, then retry the instruction.
+            </p>
+        </div>
+
+        <!-- TASK 5.1 -->
+        <h2 class="name">Task 5.1</h2>
+        <div class="entry">
+            <p class="description">
+                14 memory locations (0 through D)<br>
+                Need enough bits to represent 14 unique addresses<br>
+                2³ = 8 (not enough)<br>
+                2⁴ = 16 (enough to cover all 14 locations)<br>
+                Need a 4-to-16 decoder with 4 address input bits<br>
+                <br>
+                The decoder takes the 4-bit address and activates exactly one of the 16 output lines, 
+                selecting the correct memory location. Even though only 14 locations are used, you still 
+                need 4 bits because 3 bits can only address 8 locations.
+            </p>
+            <img src="Pictures/task5_1_diagram.png" alt="4-to-16 Decoder Diagram">
+        </div>
+
+        <!-- TASK 5.2 -->
+        <h2 class="name">Task 5.2</h2>
+        <div class="entry">
+            <p class="description">
+                Control bits: Write, Read, Enable (3 bits)<br>
+                Address bits = 4 bits<br>
+                Total address = 3 control bits + 4 address bits = 7 bits total<br>
+                Pattern: Write | Read | Enable | A3 | A2 | A1 | A0<br>
+                <br>
+                a) Read memory location containing FEAD<br>
+                FEAD is at index A (hex) = 1010 in binary<br>
+                Want to read so: Write=0, Read=1, Enable=1<br>
+                Full address = 0 1 1 1 0 1 0 = 0x1A in hex<br>
+                <br>
+                b) Write to memory location with index C<br>
+                Index C (hex) = 1100 in binary<br>
+                Want to write so: Write=1, Read=0, Enable=1<br>
+                Full address = 1 0 1 1 1 0 0 = 0x5C in hex<br>
+                <br>
+                By combining the control bits with the address bits into one value, the processor can specify 
+                both where to access memory and what operation to perform in a single address. This is a simple 
+                but effective way to control memory interfacing.
+            </p>
+        </div>
+
+    </div><!-- end .section -->
+
+    <script src="script.js"></script>
+</body>
+</html>
