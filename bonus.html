@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonus Feature - Live Clock</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .clock-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 50vh;
+            gap: 20px;
+        }
+
+        .clock {
+            font-size: 5rem;
+            font-family: 'Courier New', monospace;
+            background: rgba(255, 255, 255, 0.06);
+            border-left: 4px solid #e94560;
+            border-radius: 12px;
+            padding: 30px 50px;
+            letter-spacing: 0.05em;
+            color: #ffffff;
+        }
+
+        .date {
+            font-size: 1.5rem;
+            color: #ccd6f6;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 12px 30px;
+        }
+
+        .explanation {
+            max-width: 600px;
+            text-align: center;
+            color: #ccd6f6;
+            line-height: 1.7;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="lab1.html">Lab 1</a>
+        <a href="lab2.html">Lab 2</a>
+        <a href="lab3.html">Lab 3</a>
+        <a href="lab4.html">Lab 4</a>
+        <a href="lab5.html">Lab 5</a>
+        <a href="lab6.html">Lab 6</a>
+        <a href="lab7.html">Lab 7</a>
+        <a href="lab8.html">Lab 8</a>
+        <a href="lab9.html">Lab 9</a>
+        <a href="bonus.html" class="active">Bonus</a>
+        <button class="dark-toggle" id="darkToggle">Dark Mode</button>
+    </nav>
+
+    <div class="section">
+        <h1>Bonus Feature — Live Clock</h1>
+
+        <div class="clock-container">
+            <div class="clock" id="clock">00:00:00</div>
+            <div class="date" id="date"></div>
+            <p class="explanation">
+                This live clock updates every second using JavaScript's <strong>setInterval()</strong> function
+                and the built-in <strong>Date</strong> object. It reads the current time from your device,
+                formats the hours, minutes, and seconds with leading zeros using <strong>padStart()</strong>,
+                and updates the page in real time without any page refresh.
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function updateClock() {
+            const now = new Date();
+
+            const hours   = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('date').textContent = now.toLocaleDateString('en-GB', options);
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+
+</body>
+</html>
