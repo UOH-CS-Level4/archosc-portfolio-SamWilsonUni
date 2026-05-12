@@ -161,3 +161,39 @@ body.dark .dark-toggle {
     z-index: 9999;
     pointer-events: auto;
 }
+
+.clock-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 50vh;
+            gap: 20px;
+        }
+
+        .clock {
+            font-size: 5rem;
+            font-family: 'Courier New', monospace;
+            background: rgba(255, 255, 255, 0.06);
+            border-left: 4px solid #e94560;
+            border-radius: 12px;
+            padding: 30px 50px;
+            letter-spacing: 0.05em;
+            color: #ffffff;
+        }
+
+        .date {
+            font-size: 1.5rem;
+            color: #ccd6f6;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 12px 30px;
+        }
+
+        .explanation {
+            max-width: 600px;
+            text-align: center;
+            color: #ccd6f6;
+            line-height: 1.7;
+            margin-top: 10px;
+        }

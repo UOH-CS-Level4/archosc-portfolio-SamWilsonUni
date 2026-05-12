@@ -5,43 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bonus Feature - Live Clock</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .clock-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 50vh;
-            gap: 20px;
-        }
-
-        .clock {
-            font-size: 5rem;
-            font-family: 'Courier New', monospace;
-            background: rgba(255, 255, 255, 0.06);
-            border-left: 4px solid #e94560;
-            border-radius: 12px;
-            padding: 30px 50px;
-            letter-spacing: 0.05em;
-            color: #ffffff;
-        }
-
-        .date {
-            font-size: 1.5rem;
-            color: #ccd6f6;
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
-            padding: 12px 30px;
-        }
-
-        .explanation {
-            max-width: 600px;
-            text-align: center;
-            color: #ccd6f6;
-            line-height: 1.7;
-            margin-top: 10px;
-        }
-    </style>
 </head>
 <body>
 
@@ -72,27 +35,11 @@
                 formats the hours, minutes, and seconds with leading zeros using <strong>padStart()</strong>,
                 and updates the page in real time without any page refresh.
             </p>
+            <img src="Pictures/bonus screenshot.png" alt="clock code">
         </div>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        function updateClock() {
-            const now = new Date();
-
-            const hours   = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-
-            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
-
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('date').textContent = now.toLocaleDateString('en-GB', options);
-        }
-
-        updateClock();
-        setInterval(updateClock, 1000);
-    </script>
 
 </body>
 </html>
