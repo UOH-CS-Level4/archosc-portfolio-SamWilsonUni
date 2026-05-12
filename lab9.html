@@ -28,6 +28,130 @@
         <h1>Lab 9 — OS Resource Allocation</h1>
 
 
+        <div class="entry">
+            <p class="description">
+                Lab was missing the allocation table, so I'm using the standard textbook reference.
+                The allocation matrix is:<br>
+                P1: R1=0, R2=1, R3=0<br>
+                P2: R1=2, R2=0, R3=0<br>
+                P3: R1=3, R2=0, R3=2<br>
+                P4: R1=2, R2=1, R3=1<br>
+                P5: R1=0, R2=0, R3=2<br><br>
+                The maximum demand matrix is:<br>
+                P1: R1=7, R2=5, R3=4<br>
+                P2: R1=3, R2=2, R3=2<br>
+                P3: R1=9, R2=0, R3=2<br>
+                P4: R1=2, R2=2, R3=2<br>
+                P5: R1=4, R2=4, R3=4<br><br>
+                The Need matrix is calculated as Need = Maximum - Allocation:<br>
+                P1: R1=7, R2=4, R3=4<br>
+                P2: R1=1, R2=2, R3=2<br>
+                P3: R1=6, R2=0, R3=0<br>
+                P4: R1=0, R2=1, R3=1<br>
+                P5: R1=4, R2=4, R3=2<br><br>
+            </p>
+        </div>
+
+        <h2 class="name">Task 1</h2>
+        <div class="entry">
+            <p class="description">
+                 Available: (3,3,2)<br>
+                A process can run if its Need ≤ Available. When it finishes, it releases its allocation back into Available.<br>
+                P1 needs (7,4,4) = 7>3, so unsafe<br>
+                P2 needs (1,2,2) = 1≤3, 2≤3, 2≤2 so Run P2, release allocation (2,0,0)<br>
+                New Available = (3,3,2) + (2,0,0) = (5,3,2)<br><br>
+                Available: (5,3,2)<br>
+                P1 needs (7,4,4) = 7>5, so unsafe<br>
+                P3 needs (6,0,0) = 6>5, so unsafe<br>
+                P4 needs (0,1,1) = 0≤5, 1≤3, 1≤2 s0 Run P4, release allocation (2,1,1)<br>
+                New Available = (5,3,2) + (2,1,1) = (7,4,3)<br><br>
+                Available: (7,4,3)<br>
+                P1 needs (7,4,4) = 4>3, so unsafe <br>
+                P3 needs (6,0,0) = 6≤7, 0≤4, 0≤3 so Run P3, release allocation (3,0,2)<br>
+                New Available = (7,4,3) + (3,0,2) = (10,4,5)<br><br>
+                Available: (10,4,5)<br>
+                P1 needs (7,4,4) = 7≤10, 4≤4, 4≤5 so Run P1, release allocation (0,1,0)<br>
+                New Available = (10,4,5) + (0,1,0) = (10,5,5)<br><br>
+                Available: (10,5,5)<br>
+                P5 needs (4,4,2) = 4≤10, 4≤5, 2≤5 so Run P5, release allocation (0,0,2)<br>
+                New Available = (10,5,5) + (0,0,2) = (10,5,7)<br><br>
+                Safe Sequence: P2, P4, P3, P1, P5<br>
+                The system is in a safe state because I found a valid sequence where every process can complete without deadlock. Available resources return to the full (10,5,7) at the end.
+            </p>
+        </div>
+        <h2 class="name">Task 2</h2>
+        <div class="entry">
+            <p class="description">
+            Available: (5,3,2)<br>
+            P1 needs (7,4,4) = 7>5, so unsafe<br>
+            P2 needs (1,2,2) = 1≤5, 2≤3, 2≤2 so Run P2, release allocation (2,0,0)<br>
+            New Available = (5,3,2) + (2,0,0) = (7,3,2)<br><br>
+
+            Available: (7,3,2)<br>
+            P1 needs (7,4,4) = 4>3, so unsafe<br>
+            P3 needs (6,0,0) = 6≤7, 0≤3, 0≤2 so Run P3, release allocation (3,0,2)<br>
+            New Available = (7,3,2) + (3,0,2) = (10,3,4)<br><br>
+
+            Available: (10,3,4)<br>
+            P1 needs (7,4,4) = 4>3, so unsafe<br>
+            P4 needs (0,1,1) = 0≤10, 1≤3, 1≤4 so Run P4, release allocation (2,1,1)<br>
+            New Available = (10,3,4) + (2,1,1) = (12,4,5)<br><br>
+
+            Available: (12,4,5)<br>
+            P1 needs (7,4,4) = 7≤12, 4≤4, 4≤5 so Run P1, release allocation (0,1,0)<br>
+            New Available = (12,4,5) + (0,1,0) = (12,5,5)<br><br>
+
+            Available: (12,5,5)<br>
+            P5 needs (4,4,2) = 4≤12, 4≤5, 2≤5 so Run P5, release allocation (0,0,2)<br>
+            New Available = (12,5,5) + (0,0,2) = (12,5,7)<br><br>
+
+            Safe Sequence: P2, P3, P4, P1, P5<br>
+            The system is in a safe state. Increasing R1 from 10 to 12 allowed P3 to be able to run in Step 2 this time instead of Step 3, as the extra R1 meant P3's need of (6,0,0) could be satisfied earlier which changed the execution order slightly. 
+            </p>
+        </div>
+
+        <h2 class="name">Task 3</h2>
+        <div class="entry">
+            <p class="description">
+                Available: (5,5,2)<br>
+                P1 needs (7,4,4) = 7>5, so unsafe<br>
+                P2 needs (1,2,2) = 1≤5, 2≤5, 2≤2 so Run P2, release allocation (2,0,0)<br>
+                New Available = (5,5,2) + (2,0,0) = (7,5,2)<br><br>
+
+                Available: (7,5,2)<br>
+                P1 needs (7,4,4) = 4>2, so unsafe<br>
+                P3 needs (6,0,0) = 6≤7, 0≤5, 0≤2 so Run P3, release allocation (3,0,2)<br>
+                New Available = (7,5,2) + (3,0,2) = (10,5,4)<br><br>
+
+                Available: (10,5,4)<br>
+                P1 needs (7,4,4) = 7≤10, 4≤5, 4≤4 so Run P1, release allocation (0,1,0)<br>
+                New Available = (10,5,4) + (0,1,0) = (10,6,4)<br><br>
+
+                Available: (10,6,4)<br>
+                P4 needs (0,1,1) = 0≤10, 1≤6, 1≤4 so Run P4, release allocation (2,1,1)<br>
+                New Available = (10,6,4) + (2,1,1) = (12,7,5)<br><br>
+
+                Available: (12,7,5)<br>
+                P5 needs (4,4,2) = 4≤12, 4≤7, 2≤5 so Run P5, release allocation (0,0,2)<br>
+                New Available = (12,7,5) + (0,0,2) = (12,7,7)<br><br>
+
+                Safe Sequence: P2, P3, P1, P4, P5<br>
+                The system is in a safe state. Increasing R2 from 5 to 7 had a notable impact since P1 was now able to run in Step 3 instead of Step 4, as the extra R2 resources meant its need of (7,4,4) could be satisfied earlier. This shows that additional resources allow processes to complete sooner, reducing waiting time and improving system performance.
+            </p>
+        </div>
+
+        <h2 class="name">Task 4</h2>
+        <div class="entry">
+            <p class="description">
+                The user is asked to input the number of processes and resource types, then the allocation matrix, maximum demand matrix, and available resources. The program checks all inputs to prevent runtime errors. After, it calculates the Need matrix by taking each process's current allocation from its maximum demand. This then tells us how many more resources each process could still request. The Safety Algorithm is in the RunSafetyAlgorithm method, which keeps a work array of the currently available resources and a finish array which tracks what processes have been completed. This method loops through all processes, looking for any unfinished process whose Need can be finished by the current work resources. When it finds one, it simulates that process completing by releasing its allocation back into work, marks it as finished, and adds it to the safe sequence. If no process can run, the system is unsafe and deadlock will happen. If all processes complete, the program prints the safe sequence.
+            </p>
+            <img src="Pictures/bankers.png" alt="bankers algorithm output">
+            <img src="Pictures/bankers1.png" alt="bankers algorithm code">
+            <img src="Pictures/bankers2.png" alt="bankers algorithm code">
+            <img src="Pictures/bankers3.png" alt="bankers algorithm code">
+            <img src="Pictures/bankers4.png" alt="bankers algorithm code">
+            <img src="Pictures/bankers5.png" alt="bankers algorithm code">
+        </div>
 
     <script src="script.js"></script>
 </body>

@@ -28,24 +28,25 @@
     <h1>Lab 7 — OS Scheduling</h1>
     <h2>Long-term scheduling</h2>
     <div class="entry">
-        <p>I created a Job class to store each job's name, arrival time, execution time, and priority. I then populated a list with the seven jobs from Table 1 and used a LINQ .Where() query to filter out any jobs with a priority of 5 or below, simulating the operating system's decision of which jobs are worth admitting into the ready queue. The admitted jobs were then printed to the console in a formatted table. <br>
-The output shows that jobs B (priority 4), F (priority 3), and A (priority 5) were rejected, while C, D, E, and G were admitted due to their higher priorities.
-</p>
+        <p>I created a Job class to store each job's name, arrival time, execution time, and priority. I then filled a list with the seven jobs from Table 1 and used a LINQ .Where() query to filter out any jobs with a priority of 5 or below, acting as the operating system's decision of which jobs are worth admitting into the ready queue. The admitted jobs were then printed to the console in a table. <br>
+        The output shows that jobs B (priority 4), F (priority 3), and A (priority 5) were rejected, while C, D, E, and G were admitted due to their higher priorities.<br>
+        </p>
         <img src="Pictures/long term scheduling output.png" alt="long term scheduling output">
+        <img src="Pictures/long term scheduling1.png" alt="long term scheduling code">
         </div>
 
     <h2>Short-term scheduling</h2>
     <div class="entry">
         <p>I created a Process class to store each process's arrival time, execution time, finish time, turnaround time, and normalised turnaround time. I then implemented the FCFS algorithm by iterating through the processes in arrival order, advancing a currentTime clock as each process completes. If a process hadn't arrived yet when the CPU became free, I skipped the clock forward to its arrival time to simulate CPU idle time.
-<br>For each process I calculated:<br>
+        <br>For each process I calculated:<br>
 
-Finish Time by adding its execution time to the current clock<br>
-Turnaround Time by subtracting its arrival time from its finish time<br>
-Normalised Turnaround Time by dividing turnaround time by execution time<br>
+        Finish Time by adding its execution time to the current clock<br>
+        Turnaround Time by subtracting its arrival time from its finish time<br>
+        Normalised Turnaround Time by dividing turnaround time by execution time<br>
 
-I then printed the results as a formatted table and generated a simple text-based Gantt chart showing the order and duration of each process's execution.
-The output shows that Process F had a normalised turnaround of 8.00, meaning it waited 8 times longer than it needed to - this is caused by the convoy effect where short processes get stuck behind longer ones.
-</p>
+        I then printed the results as a table and generated a simple text-based Gantt chart showing the order and duration of each process's execution.
+        The output shows that Process F had a normalised turnaround of 8.00, meaning it waited 8 times longer than it needed to - this is caused by the convoy effect where short processes get stuck behind longer ones.
+        </p>
         <img src="Pictures/short term scheduling.png" alt="long term scheduling output">
         </div>
 
@@ -53,16 +54,16 @@ The output shows that Process F had a normalised turnaround of 8.00, meaning it 
         <div class="entry">
             <h2>Round Robin</h2>
             <p>
-I implemented Round Robin scheduling by extending the FCFS code. The key difference was adding a RemainingTime property to each process to track how much execution time was left. Instead of running each process to completion, I used a Queue<Process> to cycle through processes, running each one for either the time quantum or its remaining time — whichever was smaller. If a process still had time remaining after its slice, it was added back to the end of the queue. I also made sure that any processes arriving during a time slice were added to the ready queue before the next process was selected.
-<br>I ran the algorithm four times with time quanta of 1, 3, 4, and 6, producing a results table and Gantt chart for each.<br><br>
-Comparing the four time quanta against the FCFS baseline (average normalised turnaround: 3.09):<br>
+            I implemented Round Robin scheduling by extending the FCFS code. The key difference was adding a RemainingTime property to each process to track how much execution time was left. Instead of running each process to completion, I used a Queue<Process> to cycle through processes, running each one for either the time quantum or its remaining time — whichever was smaller. If a process still had time remaining after its slice, it was added back to the end of the queue. I also made sure that any processes arriving during a time slice were added to the ready queue before the next process was selected.
+            <br>I ran the algorithm four times with time quanta of 1, 3, 4, and 6, producing a results table and Gantt chart for each.<br><br>
+            Comparing the four time quanta against the FCFS baseline (average normalised turnaround: 3.09):<br>
 
-TQ = 1 produces the most context switches, as every process is interrupted after just one time unit. This is the fairest in terms of response time but results in the highest overhead from switching.
-<br>TQ = 3 strikes a balance — processes get a reasonable slice of CPU time before being interrupted, reducing unnecessary switching while still preventing long processes from monopolising the CPU.
-<br>TQ = 4 is similar to TQ = 3 but slightly closer to FCFS behaviour, as some shorter processes like A and F complete within a single slice.
-<br>TQ = 6 behaves almost identically to FCFS since most processes have an execution time of 6 or less, meaning they often complete within their first time slice without being preempted.
-<br>
-This shows that a smaller time quantum improves fairness but increases overhead, while a larger time quantum reduces switching but can cause shorter processes to wait longer — reintroducing the convoy effect seen in FCFS.
+            TQ = 1 produces the most context switches, as every process is interrupted after just one time unit. This is the fairest in terms of response time but results in the highest overhead from switching.
+            <br>TQ = 3 strikes a balance — processes get a reasonable slice of CPU time before being interrupted, reducing unnecessary switching while still preventing long processes from monopolising the CPU.
+            <br>TQ = 4 is similar to TQ = 3 but slightly closer to FCFS behaviour, as some shorter processes like A and F complete within a single slice.
+            <br>TQ = 6 behaves almost identically to FCFS since most processes have an execution time of 6 or less, meaning they often complete within their first time slice without being preempted.
+            <br>
+            This shows that a smaller time quantum improves fairness but increases overhead, while a larger time quantum reduces switching but can cause shorter processes to wait longer — reintroducing the convoy effect seen in FCFS.
 
             </p>
             <img src="Pictures/round robin 1.png" alt="round robin 1">
@@ -75,13 +76,13 @@ This shows that a smaller time quantum improves fairness but increases overhead,
             <h2>Context Switching</h2>
             <p>
                 I extended the Round Robin implementation to include priority-based scheduling using the processes from Table 1. The key change was adding a Priority property to the Process class and replacing the standard queue with a List<Process> that is sorted by priority each time a new process is selected. Rather than taking the next process in order, I used OrderByDescending(p => p.Priority).First() to always select the highest priority process from those that had arrived, simulating how a real OS would favour more important processes.
-I ran the algorithm with time quanta of 1 and 6, producing a results table and Gantt chart for each.<br>
-<br>
+                I ran the algorithm with time quanta of 1 and 6, producing a results table and Gantt chart for each.<br>
+                <br>
 
-TQ = 1 — The Gantt chart shows high priority processes like E (priority 10) and C (priority 8) dominating CPU time as soon as they arrive, frequently interrupting lower priority processes. This demonstrates context switching clearly — the CPU is constantly saving and restoring process state as it switches between them. While this is fair to high priority processes, the overhead from frequent switching means lower priority processes like B (priority 4) and F (priority 3) experience much longer turnaround times.
-<br>TQ = 6 — With a larger time quantum, high priority processes still get preference when selected but are less frequently interrupted. This reduces the number of context switches significantly, meaning less overhead. However lower priority processes can still end up waiting a long time if a high priority process has a large execution time, as it will hold the CPU for its full quantum before being preempted.
-<br>
-Overall, priority-based Round Robin with a small time quantum gives the best responsiveness for high priority processes but at the cost of increased context switching overhead. A larger time quantum reduces this overhead but can cause priority inversion where low priority processes wait excessively long.
+                TQ = 1 — The Gantt chart shows high priority processes like E (priority 10) and C (priority 8) dominating CPU time as soon as they arrive, frequently interrupting lower priority processes. This demonstrates context switching clearly — the CPU is constantly saving and restoring process state as it switches between them. While this is fair to high priority processes, the overhead from frequent switching means lower priority processes like B (priority 4) and F (priority 3) experience much longer turnaround times.
+                <br>TQ = 6 — With a larger time quantum, high priority processes still get preference when selected but are less frequently interrupted. This reduces the number of context switches significantly, meaning less overhead. However lower priority processes can still end up waiting a long time if a high priority process has a large execution time, as it will hold the CPU for its full quantum before being preempted.
+                <br>
+                Overall, priority-based Round Robin with a small time quantum gives the best responsiveness for high priority processes but at the cost of increased context switching overhead. A larger time quantum reduces this overhead but can cause priority inversion where low priority processes wait excessively long.
             </p>
             <img src="Pictures/context switching.png" alt="round robin 1">
         </div>

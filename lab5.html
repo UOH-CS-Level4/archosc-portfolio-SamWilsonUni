@@ -26,7 +26,7 @@
 
     <div class="section">
         <h1>Lab 5 — Virtual Machines</h1>
-        <h2>Fixed the mistake of the nav bar repeating lab 7 and lab 8 that's in lab 5 and 6 (ignore it in screenshots)</h2>
+        <h3>Fixed the mistake of the nav bar repeating lab 7 and lab 8 that's in lab 5 and 6 <br>(ignore it in screenshots)</h3>
     <div class="entry">
             <p>In this task, I connected to my Virtual Machine (VM) using Oracle VirtualBox, by entering my VM name and using a windows 10 ISO. Once logged into Windows Server, I opened PowerShell and checked whether Git was installed. As it was not already present, I downloaded and installed Git from the official website, configuring it with the recommended settings - including setting the default branch name to "main" and enabling OpenSSL for HTTPS connections.<br>
             Once Git was successfully installed, I navigated to the Documents folder on the VM and created a new folder called "Deployment". I then used the git clone command to clone my Online Portfolio repository from GitHub into that Deployment folder. This process downloaded all of the repository's files and version history directly onto the VM, creating a local copy of my portfolio that can now be used to host the website from the Virtual Machine's web server.</p>
@@ -35,10 +35,10 @@
         </div>
         <div class="entry">
             <p>In this section, I configured my Virtual Machine to act as a web server using IIS (Internet Information Services). To verify that IIS was running correctly, I opened PowerShell and ran the command Get-Service w3svc. The terminal confirmed that the service was running as expected.
-<br>
-Next, I navigated to the default IIS web root directory, located at C:\inetpub\wwwroot. This is the folder that IIS serves files from when a request is made to the server. I moved the two default IIS placeholder files that were already there to the desktop, then copied all of the files from my Deployment folder, containing my cloned portfolio, into the wwwroot folder. IIS automatically recognises index.html as the entry point for the website.
-<br>
-After, I used to IIS to create the website link with the target folder so that I could open it in my browser.</p>
+            <br>
+            Next, I navigated to the default IIS web root directory, located at C:\inetpub\wwwroot. This is the folder that IIS serves files from when a request is made to the server. I moved the two default IIS placeholder files that were already there to the desktop, then copied all of the files from my Deployment folder, containing my cloned portfolio, into the wwwroot folder. IIS automatically recognises index.html as the entry point for the website.
+            <br>
+            After, I used to IIS to create the website link with the target folder so that I could open it in my browser.</p>
 
             <img src="Pictures/website on vm.png" alt="">
         </div>

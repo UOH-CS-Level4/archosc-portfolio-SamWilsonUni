@@ -46,8 +46,8 @@
             <p class="description">
                 0x2 = 0010, 0xC = 1100, 0x8 = 1000<br>
                 Full binary: 0010 1100 1000 (12 bits)<br>
-                First 4 bits = VPN &rarr; 0010 = 2<br>
-                Last 8 bits = offset &rarr; 1100 1000 = 0xC8<br>
+                First 4 bits = VPN so 0010 = 2<br>
+                Last 8 bits = offset so 1100 1000 = 0xC8<br>
                 Row 2: D=0, R=1, PPN=4<br>
                 R=1 means the page is in RAM (no page fault)<br>
                 <br>
@@ -60,24 +60,24 @@
         <div class="entry">
             <p class="description">
                 Page frame size = 4KB = 4096 bytes<br>
-                Each range = (frame number &times; 4096) to (frame number &times; 4096) + 4095<br>
+                Each range = (frame number x 4096) to (frame number x 4096) + 4095<br>
                 <br>
                 D (frame 0, lower bound):<br>
-                0 &times; 4096 = 0<br>
-                Range: 0 &ndash; 4095, so D = 4095<br>
+                0 x 4096 = 0<br>
+                Range: 0 - 4095, so D = 4095<br>
                 <br>
                 A (frame 7, upper bound):<br>
-                7 &times; 4096 = 28672<br>
-                Range: 28672 &ndash; A<br>
+                7 x 4096 = 28672<br>
+                Range: 28672 - A<br>
                 A = 28672 + 4095 = 32767<br>
                 <br>
                 B (frame 5, upper bound):<br>
-                5 &times; 4096 = 20480<br>
-                Range: 20480 &ndash; B<br>
+                5 x 4096 = 20480<br>
+                Range: 20480 - B<br>
                 B = 20480 + 4095 = 24575<br>
                 <br>
                 C (frame 3, upper bound):<br>
-                3 &times; 4096 = 12288<br>
+                3 x 4096 = 12288<br>
                 Range: 12288 = C<br>
                 C = 12288 + 4095 = 16383<br>
                 <br>
@@ -122,19 +122,19 @@
                 VPN = 22 bits, Offset = 10 bits, PPN = 14 bits<br>
                 4 entry TLB<br>
                 <br>
-                (i) Physical memory size &divide; page size<br>
-                2²⁴ &divide; 2¹⁰ = 2¹⁴ = 16,384 pages<br>
+                (i) Physical memory size / page size<br>
+                2²⁴ / 2¹⁰ = 2¹⁴ = 16,384 pages<br>
                 <br>
                 (ii) This is determined by the number of virtual pages<br>
-                2³² &divide; 2¹⁰ = 2²² = 4,194,304 entries<br>
+                2³² / 2¹⁰ = 2²² = 4,194,304 entries<br>
                 <br>
                 (iii) Each entry needs to store the PPN + control bits (R, D etc.)<br>
                 PPN = 14 bits + typically 2 control bits (R and D)<br>
                 = 16 bits per entry<br>
                 <br>
-                (iv) Total page table size = number of entries &times; bits per entry<br>
-                = 2²² &times; 16 bits = 2²² &times; 2 bytes = 2²³ bytes<br>
-                Pages needed = 2²³ &divide; 2¹⁰ = 2¹³ = 8,192 pages
+                (iv) Total page table size = number of entries x bits per entry<br>
+                = 2²² x 16 bits = 2²² x 2 bytes = 2²³ bytes<br>
+                Pages needed = 2²³ / 2¹⁰ = 2¹³ = 8,192 pages
             </p>
         </div>
 
@@ -142,15 +142,7 @@
         <h2 class="name">Translation Lookaside Buffer (TLB) Simulation</h2>
         <div class="entry">
             <p class="description">
-                This program simulates how a Translation Lookaside Buffer (TLB) works in a real operating system. 
-                The TLB acts as a small 4-entry cache that stores recent virtual-to-physical page translations, 
-                so the MMU doesn't have to access the slower page table in RAM every time. The program works 
-                through a sequence of virtual page number lookups &mdash; for each one it first checks the TLB, 
-                and if the VPN is found (a hit) it returns the physical page number immediately. If it isn't 
-                found (a miss) it falls back to the page table, retrieves the PPN, and loads it into the TLB 
-                for future use. When the TLB is full, the oldest entry is evicted to make room (FIFO). At the 
-                end, the hit ratio is calculated &mdash; VPNs like 1 and 6 appear multiple times in the sequence, 
-                so after the first miss they become hits, demonstrating exactly why TLBs improve performance in real systems.
+                This program simulates how a Translation Lookaside Buffer (TLB) works in a real operating system. The TLB acts as a small 4-entry cache that stores recent virtual-to-physical page translations, so the MMU doesn't have to access the slower page table in RAM every time. The program works through a sequence of virtual page number lookups and for each one it first checks the TLB, and if the VPN hits, it returns the physical page number. If it misses, it falls back to the page table, retrieves the PPN, and loads it into the TLB for future use. When the TLB is full, the oldest entry is removed to make room (FIFO). At the end, the hit ratio is calculated. VPNs like 1 and 6 appear multiple times in the sequence, so after the first miss they become hits, showing why TLBs improve performance in real systems.
             </p>
             <img src="Pictures/TLB output.png" alt="TLB output">
         </div>
@@ -163,7 +155,7 @@
                 In 16 bits: 0001100000000100<br>
                 Offset (lower 10 bits): 0000000100 = 4<br>
                 VPN (upper bits): 000110 = 6<br>
-                VPN 6 is in the TLB &rarr; TLB Hit!<br>
+                VPN 6 is in the TLB so TLB Hit<br>
                 PPN = 2<br>
                 PPN 2 in binary = 000010<br>
                 Offset = 0000000100<br>
@@ -177,8 +169,8 @@
                 In 16 bits: 0000000011111100<br>
                 Offset (lower 10 bits): 0011111100 = 0xFC = 252<br>
                 VPN (upper bits): 000000 = 0<br>
-                VPN 0 is in the TLB &rarr; TLB Hit<br>
-                But R = 0 &rarr; page is NOT in physical memory<br>
+                VPN 0 is in the TLB so TLB Hit<br>
+                But R = 0 which means page is NOT in physical memory<br>
                 This causes a Page Fault<br>
                 <br>
                 Even though VPN 0 appears in the TLB, its resident bit R=0 means the page isn't actually 
