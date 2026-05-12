@@ -30,21 +30,21 @@
         <h2>Section 1 & 2: Moving to GitHub Actions</h2>
 
         <div class="entry">
-            <p>I opened my repository settings and went to the Pages section, where I unpublished the existing site and changed the source from GitHub Pages to GitHub Actions. I then navigated to the Actions tab, clicked "New Workflow", and selected "Set up a workflow yourself" to write a custom pipeline. Finally, I renamed the workflow file from main.yml to deployment.yml.</p>
+            <p>I opened my repository settings and went to the Pages section, where I unpublished the existing site and changed the source from GitHub Pages to GitHub Actions. I then went to the Actions tab, clicked "New Workflow", and selected "Set up a workflow yourself" to write a custom pipeline. Finally, I renamed the workflow file from main.yml to deployment.yml.</p>
             <img src="Pictures/renamed empty yaml file.png" alt="Renamed empty YAML file">
         </div>
 
         <h2>Section 3: Writing the YAML Pipeline</h2>
 
         <div class="entry">
-            <p>I wrote my deployment pipeline in YAML, starting with a name, then setting it to trigger on every push to the main branch. I added a job to spin up an Ubuntu VM, then wrote steps to check out the repository, set the required permissions, upload the files as an artifact, and finally deploy it to GitHub Pages.</p>
+            <p>I wrote my deployment pipeline in YAML, starting with a name, then setting it to trigger on every push to the main branch. I added a job to make an Ubuntu VM, then wrote steps to check out the repository, set the required permissions, upload the files as an artifact, and finally deploy it to GitHub Pages.</p>
             <img src="Pictures/completed YAML.png" alt="Completed YAML pipeline">
         </div>
     </div>
 
     <div class="reflection">
         <h2>How I Linked the Pages</h2>
-        <p>I created a navigation bar at the top of both pages using HTML anchor tags. Each link uses the href attribute to point to the other page — index.html for the home page and lab3.html for this page. The active page is highlighted with a red left border so it's clear which page you're currently on. This approach keeps both pages consistent in style and easy to navigate between.</p>
+        <p>I created a navigation bar at the top of both pages using HTML anchor tags. Each link uses the href to point to the other page being index.html for the home page and lab3.html for this page. The active page is highlighted with a red left border so it's clear which page you're currently on. This keeps both pages consistent in style and easy to navigate between.</p>
     </div>
     <script src="script.js"></script>
 </body>

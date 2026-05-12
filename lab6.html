@@ -27,7 +27,7 @@
     <div class="section">
         <h1>Lab 6 — Virtual Networks and Deploying to a VM</h1>
         <div class="entry">
-            <p>Running ipconfig in PowerShell displays the network configuration of the Virtual Machine, including its IP address, subnet mask, and default gateway. This confirms the network details of the VM and shows that it is connected to the university network, which is what allows it to serve the website to other machines via the browser.</p>
+            <p>Running ipconfig in PowerShell displays the network configuration of the Virtual Machine, including its IP address, subnet mask, and default gateway. This confirms the network details of the VM and shows that it is connected to the network, which is what allows it to serve the website to other machines via the browser.</p>
             <img src="Pictures/ipconfig.png" alt="">
             <img src="Pictures/ipconfig 2.png" alt="">
         </div>
@@ -36,12 +36,12 @@
             <img src="Pictures/ping vm2.png" alt="">
         </div>
         <div class="entry">
-            <p>Running Test-NetConnection followed by VM2's IP address and specifying port 80 checks whether the IIS web server on VM2 is reachable and accepting HTTP traffic. The successful response confirms that the web server is running correctly and that VM1 can communicate with it over the network.</p>
+            <p>Running Test-NetConnection followed by VM2's IP address and port 80 checks whether the IIS web server on VM2 is reachable and accepting HTTP traffic. The successful response tells us that the web server is running correctly and that VM1 can communicate with it over the network.</p>
             <img src="Pictures/Test net connection.png" alt="">
         </div>
 
         <div class="entry">
-            <p>A self-hosted GitHub Actions runner was set up on VM1 by navigating to the repository settings and selecting "Runners" under the Actions menu. From there, a new Windows runner was configured by copying and running the provided commands in PowerShell one by one. This registered VM1 as a runner with GitHub, linking it directly to the repository. Running ./run.cmd then started the runner, which is now listening for jobs - meaning it will automatically execute any GitHub Actions workflows triggered by changes to the repository, allowing the deployment server to update without any manual intervention.</p>
+            <p>A self-hosted GitHub Actions runner was set up on VM1 by navigating to the repository settings and selecting "Runners" under the Actions menu. From there, a new Windows runner was configured by copying and running the provided commands in PowerShell. This registered VM1 as a runner with GitHub, linking it directly to the repository. Running ./run.cmd then started the runner, which is now listening for jobs - meaning it will automatically execute any GitHub Actions workflows triggered by changes to the repository, allowing the deployment server to update through it.</p>
             <img src="Pictures/making a runner.png" alt="">
         </div>
 

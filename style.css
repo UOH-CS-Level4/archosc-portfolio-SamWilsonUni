@@ -139,8 +139,10 @@ h2 {
 
 /* Dark mode overrides */
 body.dark {
-    background: #121212;
-    animation: none;
+    background: #121212 !important;
+    background-image: none !important;
+    background-size: auto !important;
+    animation: none !important;
 }
 
 body.dark .card,
@@ -152,4 +154,10 @@ body.dark .reflection {
 body.dark .dark-toggle {
     border-color: #e94560;
     color: #e94560;
+}
+
+#darkToggle {
+    position: relative;
+    z-index: 9999;
+    pointer-events: auto;
 }

@@ -153,6 +153,16 @@
             <img src="Pictures/bankers5.png" alt="bankers algorithm code">
         </div>
 
+
+        <h2 class="name">Independent Learning</h2>
+        <div class="entry">
+            <p class="description">
+                Deadlock occurs when processes are stuck in a cycle, each waiting for resources held by another, meaning none can proceed. There are four conditions that must all hold for deadlock to occur: mutual exclusion, hold and wait, no preemption, and circular wait. Prevention works by eliminating at least one of these conditions — for example, requiring processes to request all resources upfront removes hold and wait. Avoidance, which is what the Banker's Algorithm does, takes a less restrictive approach by dynamically checking whether granting a resource request would still leave the system in a safe state before allowing it.
+                <br><br>
+                In terms of real-world applications, deadlock management is critical in database systems like MySQL, where transactions can lock rows in conflicting orders. MySQL handles this by detecting the deadlock and automatically rolling back one transaction to break the cycle. In cloud platforms like AWS and Azure, resource allocation algorithms ensure no virtual machine can starve others of CPU or memory. In safety-critical systems such as aircraft control or medical devices, deadlock prevention is essential as any freeze could be life-threatening, so resources are typically reserved in full before execution begins.
+            </p>
+        </div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -86,6 +86,15 @@
             </p>
             <img src="Pictures/context switching.png" alt="round robin 1">
         </div>
+
+        <h2 class="name">Independent Learning</h2>
+        <div class="entry">
+            <p class="description">
+            Priority Scheduling is a CPU scheduling algorithm where each process is assigned a priority value, and the CPU is always allocated to the highest priority process. If two processes have the same priority, they are typically handled in FIFO order. Priority scheduling can be either preemptive (a newly arrived higher priority process immediately takes the CPU) or non-preemptive (the current process finishes before the CPU is reassigned). A well known real-world example is Windows, which assigns priority levels to processes where system processes run at higher priorities than user applications. One major drawback is starvation, where low priority processes may never get CPU time if higher priority processes keep arriving. This is typically solved using ageing, where a process's priority increases the longer it waits.
+                <br><br>
+            Shortest Job Next (SJN), also known as Shortest Job First (SJF), assigns the CPU to the process with the smallest burst time (execution time). This is provably optimal in terms of minimising average waiting time across all processes. Like priority scheduling it can be preemptive (where a newly arrived shorter job can interrupt the current one, known as Shortest Remaining Time First) or non-preemptive. The main drawback is that burst times are rarely known in advance in real systems, so SJN is often approximated using techniques like exponential averaging to predict the next burst time based on previous ones. It is commonly used in batch processing systems where job lengths are known ahead of time.
+            </p>
+        </div>
 </div>
  <script src="script.js"></script>
 </body>
